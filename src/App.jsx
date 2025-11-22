@@ -14,17 +14,17 @@ import {
 
 // Emoțiile dintre care poate alege utilizatorul
 const EMOTIONS = [
-  "Joy",
-  "Calm",
-  "Sadness",
-  "Anger",
-  "Fear",
-  "Shame",
-  "Guilt",
-  "Jealousy",
-  "Envy",
-  "Proud",
-  "Disgust",
+  "Bucurie",
+  "Liniște",
+  "Tristețe",
+  "Furie",
+  "Frică",
+  "Rușine",
+  "Vinovăție",
+  "Gelozie",
+  "Invidie",
+  "Mândrie",
+  "Dezgust",
 ];
 
 const STORAGE_KEY = "emotion-journal-simple-v1";
@@ -131,19 +131,20 @@ function Header() {
       >
         <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-950/80 px-3 py-1 text-[11px] text-slate-300">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          CBT · Emotional Awareness · Simple ABC (Situation → Emotion →
-          Behaviour)
+          CBT · Conștientizare Emoțională · ABC Simplificat (Situație → Emoție →
+          Comportament)
         </div>
         <h1 className="text-2xl font-semibold tracking-tight text-slate-50 md:text-3xl">
-          Simple Emotional Journal
+          Jurnal Emoțional Simplificat
           <span className="block bg-gradient-to-r from-cyan-400 via-emerald-400 to-indigo-400 bg-clip-text text-lg text-transparent md:text-xl">
-            Step 1 – Notice situation, emotion and behaviour
+            Pasul 1 – Observă situația, emoția și comportamentul
           </span>
         </h1>
         <p className="max-w-2xl text-sm text-slate-300 md:text-base">
-          This is a simplified CBT journal. For each situation, you choose one
-          main emotion and write what you did. Later, you can see which emotions
-          are most present in your life using the chart on the right.
+          Acesta este un jurnal CBT simplificat. Pentru fiecare situație, alege
+          o emoție principală și notează ce ai făcut. Mai târziu, poți vedea ce
+          emoții sunt cel mai des prezente în viața ta folosind graficul din
+          dreapta.
         </p>
       </motion.div>
     </header>
@@ -171,32 +172,32 @@ function JournalForm({
         {/* Situația */}
         <div className="space-y-1.5">
           <label className="text-xs font-semibold text-slate-200">
-            Situation / context
+            Situație / context
           </label>
           <textarea
             value={situation}
             onChange={(e) => setSituation(e.target.value)}
             rows={3}
             className="w-full resize-none rounded-2xl border border-slate-700 bg-slate-950/70 px-3 py-2 text-sm text-slate-100 outline-none ring-cyan-400/40 focus:border-cyan-400 focus:ring"
-            placeholder="Where were you? With whom? What was happening?"
+            placeholder="Unde erai? Cu cine? Ce se întâmpla?"
           />
           <p className="text-[11px] text-slate-400">
-            Example: “In the car, late for work, traffic jam and my phone
-            ringing.”
+            Exemplu: „În mașină, întârziam la muncă, era aglomerație și îmi suna
+            telefonul.”
           </p>
         </div>
 
         {/* Emoția */}
         <div className="space-y-1.5">
           <label className="text-xs font-semibold text-slate-200">
-            Main emotion you felt*
+            Emoția principală pe care ai simțit-o*
           </label>
           <select
             value={emotion}
             onChange={(e) => setEmotion(e.target.value)}
             className="w-full rounded-2xl border border-slate-700 bg-slate-950/70 px-3 py-2 text-sm text-slate-100 outline-none ring-cyan-400/50 focus:border-cyan-400 focus:ring"
           >
-            <option value="">Choose an emotion…</option>
+            <option value="">Alege o emoție…</option>
             {EMOTIONS.map((emo) => (
               <option key={emo} value={emo}>
                 {emo}
@@ -204,41 +205,42 @@ function JournalForm({
             ))}
           </select>
           <p className="text-[11px] text-slate-400">
-            Start by choosing just one dominant emotion. Later, în aplicațiile
-            următoare, vom lucra și cu gânduri și distorsiuni cognitive.
+            Începe prin a alege o singură emoție dominantă. Mai târziu, în
+            aplicațiile următoare, vom lucra și cu gândurile și distorsiunile
+            cognitive.
           </p>
         </div>
 
         {/* Comportamentul */}
         <div className="space-y-1.5">
           <label className="text-xs font-semibold text-slate-200">
-            What did you do? (behaviour)
+            Ce ai făcut? (comportament)
           </label>
           <textarea
             value={behavior}
             onChange={(e) => setBehavior(e.target.value)}
             rows={3}
             className="w-full resize-none rounded-2xl border border-slate-700 bg-slate-950/70 px-3 py-2 text-sm text-slate-100 outline-none ring-cyan-400/40 focus:border-cyan-400 focus:ring"
-            placeholder="How did you react? (e.g. argued, avoided, ate, shut down, scrolled on the phone)"
+            placeholder="Cum ai reacționat? (ex.: te-ai certat, ai evitat, ai mâncat, te-ai închis în tine, ai stat pe telefon)"
           />
           <p className="text-[11px] text-slate-400">
-            Here we simply observe the reaction. Later you will learn how
-            thoughts influence this behaviour.
+            Aici observăm simplu reacția. Mai târziu vei învăța cum gândurile
+            influențează acest comportament.
           </p>
         </div>
 
         {/* Buton salvare */}
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
           <p className="text-[11px] text-slate-400">
-            *Emotion is required. Situation and behaviour help you see patterns,
-            but they can be short.
+            *Emoția este obligatorie. Situația și comportamentul te ajută să
+            observi tipare, dar pot fi notate pe scurt.
           </p>
           <button
             type="submit"
             disabled={!emotion}
             className="rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500 px-5 py-2 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/40 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Save entry
+            Salvează înregistrarea
           </button>
         </div>
       </form>
@@ -257,11 +259,11 @@ function StatsPanel({ entries, emotionStats, onClearAll }) {
     >
       <div className="space-y-1">
         <h2 className="text-sm font-semibold text-slate-100">
-          Emotion overview
+          Prezentare generală a emoțiilor
         </h2>
         <p className="text-[11px] text-slate-400">
-          This chart shows how often each emotion appears in your entries. It
-          helps you see which emotions are dominant lately.
+          Acest grafic arată de câte ori apare fiecare emoție în înregistrările
+          tale. Te ajută să vezi ce emoții sunt dominante în ultima perioadă.
         </p>
       </div>
 
@@ -269,7 +271,7 @@ function StatsPanel({ entries, emotionStats, onClearAll }) {
       <div className="h-56 rounded-2xl border border-slate-800 bg-slate-950/80 p-3">
         {emotionStats.length === 0 ? (
           <div className="flex h-full items-center justify-center text-[11px] text-slate-400">
-            Add at least one entry to see the chart.
+            Adaugă cel puțin o înregistrare pentru a vedea graficul.
           </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
@@ -316,13 +318,13 @@ function StatsPanel({ entries, emotionStats, onClearAll }) {
       </div>
 
       <div className="flex items-center justify-between text-[11px] text-slate-400">
-        <span>Total entries: {entries.length}</span>
+        <span>Total înregistrări: {entries.length}</span>
         <button
           type="button"
           onClick={onClearAll}
           className="rounded-full border border-slate-700 bg-slate-950/80 px-3 py-1 font-semibold text-slate-200 hover:border-rose-500 hover:text-rose-300"
         >
-          Clear all
+          Șterge tot
         </button>
       </div>
     </motion.aside>
@@ -335,17 +337,17 @@ function JournalList({ entries }) {
     <section className="mb-4 space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-slate-100">
-          Logged situations
+          Situații înregistrate
         </h2>
         <p className="text-[11px] text-slate-400">
-          The newest entries appear first.
+          Cele mai noi înregistrări apar primele.
         </p>
       </div>
 
       {entries.length === 0 && (
         <div className="rounded-2xl border border-dashed border-slate-700 bg-slate-950/70 p-4 text-sm text-slate-400">
-          No entries yet. Start by adding a situation, choosing an emotion and
-          writing how you reacted.
+          Nicio înregistrare încă. Începe prin a adăuga o situație, a alege o
+          emoție și notează cum ai reacționat.
         </div>
       )}
 
@@ -372,12 +374,12 @@ function JournalList({ entries }) {
               </header>
 
               {entry.situation && (
-                <EntryField label="Situation / context">
+                <EntryField label="Situație / context">
                   {entry.situation}
                 </EntryField>
               )}
               {entry.behavior && (
-                <EntryField label="Behaviour">{entry.behavior}</EntryField>
+                <EntryField label="Comportament">{entry.behavior}</EntryField>
               )}
             </motion.article>
           ))}
