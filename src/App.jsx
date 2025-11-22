@@ -19,6 +19,7 @@ const EMOTIONS = [
   "Tristețe",
   "Furie",
   "Frică",
+  "Anxietate",
   "Rușine",
   "Vinovăție",
   "Gelozie",
@@ -26,6 +27,33 @@ const EMOTIONS = [
   "Mândrie",
   "Dezgust",
 ];
+
+const EMOTION_DETAILS = {
+  Bucurie:
+    "A simți că faci progrese rezonabile spre realizarea unui scop important pentru tine. Bucuria apare când ceva merge bine în direcția valorilor și dorințelor tale.",
+  Liniște:
+    "A simți că o situație stresantă sau amenințătoare a trecut, iar acum ești în siguranță. Este starea de calm după ce pericolul, presiunea sau conflictul s-au diminuat.",
+  Tristețe:
+    "A fi trăit o pierdere importantă: o persoană, o relație, o oportunitate sau o parte din tine. Tristețea semnalează faptul că ceva valoros pentru tine nu mai este.",
+  Furie:
+    "A percepe o ofensă umilitoare la adresa ta sau a celor apropiați. Furia apare când simți că ai fost tratat nedrept, desconsiderat sau atacat.",
+  Anxietate:
+    "A te confrunta cu o amenințare incertă, greu de definit, dar simțită ca periculoasă. Anxietatea este frica orientată spre viitor, față de ceea ce „s-ar putea întâmpla”.",
+  Frică:
+    "A te confrunta cu un pericol imediat sau o amenințare serioasă pentru siguranța ta (fizică sau psihologică). Frica semnalează nevoia de protecție și siguranță.",
+  Rușine:
+    "A simți că nu ai reușit să trăiești conform propriului tău ideal despre tine. Rușinea apare când crezi că „nu ești suficient de bun” în fața ochilor tăi sau ai celorlalți.",
+  Vinovăție:
+    "A simți că ai încălcat o regulă morală importantă pentru tine sau că ai făcut rău cuiva. Vinovăția semnalează nevoia de a repara, de a cere iertare sau de a schimba ceva.",
+  Gelozie:
+    "A resimți resentiment și teamă față de o a treia persoană care amenință o relație importantă pentru tine. Gelozia apare când îți este teamă să nu pierzi afecțiunea sau atenția cuiva.",
+  Invidie:
+    "A-ți dori ceea ce are altcineva (calități, succes, relații, obiecte) și a te compara dezavantajos cu acea persoană. Invidia poate ascunde dorințe, nevoi și valori personale neîmplinite.",
+  Mândrie:
+    "A-ți întări identitatea de sine asumându-ți meritul pentru o realizare sau un lucru valoros (al tău sau al grupului cu care te identifici). Mândria sănătoasă apare când recunoști efortul și progresul real.",
+  Dezgust:
+    "A simți repulsie față de ceva perceput ca fiind „indigestibil” – murdar, contaminat sau profund incompatibil cu valorile tale. Dezgustul te ajută să te îndepărtezi de ceea ce simți că îți face rău.",
+};
 
 const STORAGE_KEY = "emotion-journal-simple-v1";
 
@@ -62,6 +90,7 @@ export default function App() {
 
     const newEntry = {
       id: Date.now(),
+      date: new Date().toISOString(),
       situation: situation.trim(),
       emotion: emotion.trim(),
       behavior: behavior.trim(),
@@ -209,6 +238,15 @@ function JournalForm({
             aplicațiile următoare, vom lucra și cu gândurile și distorsiunile
             cognitive.
           </p>
+
+          {emotion && EMOTION_DETAILS[emotion] && (
+            <div className="mt-2 rounded-2xl border border-slate-800 bg-slate-950/80 p-3 text-[11px] text-slate-200">
+              <div className="mb-1 text-[11px] font-semibold text-cyan-300">
+                Tema relațională centrală a acestei emoții
+              </div>
+              <p>{EMOTION_DETAILS[emotion]}</p>
+            </div>
+          )}
         </div>
 
         {/* Comportamentul */}
